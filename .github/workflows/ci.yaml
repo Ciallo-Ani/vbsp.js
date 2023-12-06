@@ -5,7 +5,11 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
        
     steps:
       - name: Checkout
@@ -19,8 +23,13 @@ jobs:
       - name: Verify emsdk
         run: emcc -v
 
-      - name: Build
+      - name: Build on windows
+        if: runner.os == 'Windows'
         run: ./build.bat
+      
+      - name: Build on linux
+        if: runner.os == 'Linux'
+        run: ./build.sh
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
