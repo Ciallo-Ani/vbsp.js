@@ -20,9 +20,7 @@ jobs:
         run: emcc -v
 
       - name: Build
-        working-directory: ${{ github.workspace }}
-        shell: bash
-        run: build.bat
+        run: ./build.bat
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
