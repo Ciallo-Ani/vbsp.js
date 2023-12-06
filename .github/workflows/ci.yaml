@@ -29,6 +29,7 @@ jobs:
       
       - name: Build on linux
         if: runner.os == 'Linux'
+        shell: bash
         run: ./build.sh
 
       - name: Upload artifact
