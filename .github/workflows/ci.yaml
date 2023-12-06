@@ -20,7 +20,7 @@ jobs:
         run: emcc -v
 
       - name: Build
-        working-directory: vbsp.js
+        working-directory: ${{ github.workspace }}
         shell: bash
         run: build.bat
 
@@ -28,4 +28,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: ${{ runner.os }}
-          path: vbsp.js
+          path: ${{ github.workspace }}
