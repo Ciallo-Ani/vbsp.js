@@ -18,7 +18,7 @@ jobs:
           submodules: recursive
 
       - name: Setup emsdk
-        uses: mymindstorm/setup-emsdk@v1
+        uses: mymindstorm/setup-emsdk@v2
 
       - name: Verify emsdk
         run: emcc -v
