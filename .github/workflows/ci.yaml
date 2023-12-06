@@ -1,0 +1,31 @@
+name: Package vbsp
+on:
+  - push
+
+
+jobs:
+  build:
+    runs-on: windows-latest
+       
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup emsdk
+        uses: mymindstorm/setup-emsdk@v13
+
+      - name: Verify emsdk
+        run: emcc -v
+
+      - name: Build
+        working-directory: vbsp.js
+        shell: bash
+        run: build.bat
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ runner.os }}
+          path: vbsp.js
