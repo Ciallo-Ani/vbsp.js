@@ -195,6 +195,7 @@ vector_t findNormal(const vector_t& a,const vector_t& b,const vector_t& c) {
 }
 
 glm::vec3 cam_pos(0,0,0);
+float gF_Cam_Pos[3] = {0.0};
 
 float cam_pitch = 0;
 float cam_yaw = 0;
@@ -226,21 +227,16 @@ extern "C" {
 	extern int parse_ents(char* data);
 
 	void setCam(float x, float y, float z, float pa, float ya) {
-		cam_pos.x = x;
-		cam_pos.y = y;
-		cam_pos.z = z;
+		cam_pos.x = gF_Cam_Pos[0] = x;
+		cam_pos.y = gF_Cam_Pos[1] = y;
+		cam_pos.z = gF_Cam_Pos[2] = z;
 		
 		cam_pitch = pa*PI_OVER_180;
 		cam_yaw = ya *PI_OVER_180;
 	}
 
 	float* EMSCRIPTEN_KEEPALIVE getCam() {
-		float* cam = new float[3];
-		cam[0] = cam_pos.x;
-		cam[1] = cam_pos.y;
-		cam[2] = cam_pos.z;
-		
-		return cam;
+		return gF_Cam_Pos;
 	}
 	
 	void setSkybox(float x, float y, float z, float scale) {
