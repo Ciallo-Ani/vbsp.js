@@ -31,6 +31,7 @@ var _loadMap = Module.cwrap("loadMap", null, ["number","number"]);
 var map_request;
 
 Module.setCam = Module.cwrap("setCam", null, ["number","number","number","number","number"]);
+Module.getCam = Module.cwrap("getCam", "number", []);
 
 var _setSkybox = Module.cwrap("setSkybox", null, ["number","number","number","number"]);
 var _setModel = Module.cwrap("setModel", null, ["number","number","number","number"]);

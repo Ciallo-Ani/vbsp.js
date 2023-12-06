@@ -233,6 +233,15 @@ extern "C" {
 		cam_pitch = pa*PI_OVER_180;
 		cam_yaw = ya *PI_OVER_180;
 	}
+
+	float* EMSCRIPTEN_KEEPALIVE getCam() {
+		float* cam = new float[3];
+		cam[0] = cam_pos.x;
+		cam[1] = cam_pos.y;
+		cam[2] = cam_pos.z;
+		
+		return cam;
+	}
 	
 	void setSkybox(float x, float y, float z, float scale) {
 		skybox_active = true;

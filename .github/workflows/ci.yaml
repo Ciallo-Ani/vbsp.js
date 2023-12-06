@@ -29,7 +29,10 @@ jobs:
       
       - name: Build on linux
         if: runner.os == 'Linux'
-        run: chmod +x ./build.sh && bash ./build.sh
+        run: |
+          mv ./build.bat ./build.sh
+          chmod +x ./build.sh
+          bash ./build.sh
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
