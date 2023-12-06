@@ -44,13 +44,18 @@ mergeInto(LibraryManager.library, {
 		var cam_placed = false;
 		
 		kvparse(data,function(ent) {
-			if (!cam_placed && ent.classname.substr(0,17) == "info_player_start") {
-				var pos = ent.origin.split(" ").map(parseFloat);
-				var yaw = parseFloat(ent.angles.split(" ")[1]);
-				
-				Module.setCam(pos[0],pos[1],pos[2]+64,0,yaw);
-				
-				cam_placed = true;
+			if (!cam_placed) {
+				if (ent.classname.substr(0,17) == "info_player_start" || 
+					ent.classname.substr(0,28) == "info_player_counterterrorist" ||
+					ent.classname.substr(0,21) == "info_player_terrorist") {
+
+					var pos = ent.origin.split(" ").map(parseFloat);
+					var yaw = parseFloat(ent.angles.split(" ")[1]);
+					
+					Module.setCam(pos[0],pos[1],pos[2]+64,0,yaw);
+					
+					cam_placed = true;
+				}
 			} else if (ent.classname == "sky_camera") {
 				var pos = ent.origin.split(" ").map(parseFloat);
 				var scale = parseFloat(ent.scale);
