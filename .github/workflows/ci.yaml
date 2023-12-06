@@ -37,5 +37,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ runner.os }}
+          name: ${{ runner.os }}-vbsp.js-${{ env.GITHUB_SHA_SHORT }}
           path: ${{ github.workspace }}
